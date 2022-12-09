@@ -41,5 +41,7 @@ public interface Settings {
         double GEARING = 9.0;
 
         double MASS = Units.lbsToKilograms(28.232);
+
+        double MOVE_SPEED = Units.feetToMeters(2);
     }
 }

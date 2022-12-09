@@ -6,6 +6,7 @@
 package com.stuypulse.robot;
 
 import com.stuypulse.robot.commands.DriveCommand;
+import com.stuypulse.robot.commands.ElevatorDrive;
 import com.stuypulse.robot.commands.auton.DoNothingAuton;
 import com.stuypulse.robot.subsystems.IDrivetrain;
 import com.stuypulse.robot.subsystems.IElevator;
@@ -52,6 +53,7 @@ public class RobotContainer {
 
     private void configureButtonBindings() {
         drivetrain.setDefaultCommand(new DriveCommand(drivetrain, driver));
+        elevator.setDefaultCommand(new ElevatorDrive(elevator, driver));
     }
 
     /**************/

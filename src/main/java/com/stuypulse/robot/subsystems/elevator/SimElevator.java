@@ -4,6 +4,7 @@ import static com.stuypulse.robot.constants.Settings.Elevator.*;
 
 import com.stuypulse.robot.subsystems.IElevator;
 import com.stuypulse.stuylib.control.Controller;
+import com.stuypulse.stuylib.control.feedback.PIDController;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.system.plant.DCMotor;
@@ -35,17 +36,31 @@ public class SimElevator extends IElevator {
 			true
 		);
 
+		control = new PIDController(10, 0.5, 1);
+
 		mech = new Mechanism2d(2, 6);
 		MechanismRoot2d root = mech.getRoot("ElevatorRoot", 1, 0);
 		elevatorLigament = root.append(
 			new MechanismLigament2d("Elevator", 1, 90.0));
 
 		SmartDashboard.putData("Mech2d", mech);
+
+		targetHeight = BOTTOM;
 	}
 
 	@Override
 	public void setTargetHeight(double height) {
-		height = MathUtil.clamp(height, BOTTOM, TOP);
+		targetHeight = MathUtil.clamp(height, BOTTOM, TOP);
+	}
+
+	@Override
+	public double getHeight() {
+		return sim.getPositionMeters();
+	}
+
+	@Override
+	public double getTargetHeight() {
+		return targetHeight;
 	}
 
 	@Override
@@ -53,6 +68,9 @@ public class SimElevator extends IElevator {
 		// make the maximum height 5 + 0.5 and minimum height 0.5
 		elevatorLigament.setLength(
 			sim.getPositionMeters() * (5 / TOP) + 0.5);
+
+		SmartDashboard.putNumber("Elevator/Target Height", targetHeight);
+		SmartDashboard.putNumber("Elevator/Height", sim.getPositionMeters());
 	}
 
 	@Override

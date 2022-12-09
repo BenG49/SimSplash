@@ -14,6 +14,8 @@ public class DriveCommand extends CommandBase {
 	public DriveCommand(IDrivetrain drivetrain, Gamepad gamepad) {
 		this.drivetrain = drivetrain;
 		this.gamepad = gamepad;
+
+		addRequirements(drivetrain);
 	}
 
 	public void execute() {
