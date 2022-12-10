@@ -12,4 +12,14 @@ public interface Ports {
         int OPERATOR = 1;
         int DEBUGGER = 2;
     }
+
+    public interface Drivetrain {
+        int LEFT_TOP = 10;
+        int LEFT_MIDDLE = 11;
+        int LEFT_BOTTOM = 12;
+
+        int RIGHT_TOP = 13;
+        int RIGHT_MIDDLE = 14;
+        int RIGHT_BOTTOM = 15;
+    }
 }

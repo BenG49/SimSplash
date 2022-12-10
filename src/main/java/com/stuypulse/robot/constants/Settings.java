@@ -27,8 +27,8 @@ public interface Settings {
             double kV = 1.6658;
             double kA = 0.4515;
 
-            double kVAngular = 6.34;
-            double kAAngular = 1.35;
+            double kVAngular = 6.34 / 5.0;
+            double kAAngular = 1.35 / 5.0;
         }
     }
 

@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 
 // Drivetrain.java
 public class Drivetrain extends IDrivetrain {
-	CANSparkMax[] left, right;
+	private CANSparkMax[] left, right;
 
-	DifferentialDrive drivetrain;
+	private DifferentialDrive drivetrain;
 
 	public Drivetrain() {
 		drivetrain = new DifferentialDrive(
