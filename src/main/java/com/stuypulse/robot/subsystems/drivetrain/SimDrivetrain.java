@@ -19,18 +19,21 @@ public class SimDrivetrain extends IDrivetrain {
 	private Field2d field;
 
 	public SimDrivetrain() {
-		sim = new DifferentialDrivetrainSim(
+        sim = new DifferentialDrivetrainSim(
+			// identifies a drivetrain state space model from SysId gains
 			LinearSystemId.identifyDrivetrainSystem(
-				Feedforward.kV,
-				Feedforward.kA,
-				Feedforward.kVAngular,
-				Feedforward.kAAngular,
-				TRACK_WIDTH
+				Feedforward.kV,                        // linear velocity gain
+				Feedforward.kA,                        // linear acceleration gain
+				Feedforward.kVAngular,                 // angular velocity gain
+				Feedforward.kAAngular,                 // angular acceleration gain
+				TRACK_WIDTH                            // track width of the drivetrain
 			),
-			DCMotor.getNEO(6),
-			4.5,
-			TRACK_WIDTH,
-			DIAMETER / 2,
+			DCMotor.getNEO(6), // 6 NEO motors
+			4.5,                 // 4.5:1 gearing reduction
+			TRACK_WIDTH,                 // track width of the drivetrain
+			DIAMETER / 2,                // radius of the wheels
+
+			// give the drivetrain measurement noise (none in this example)
 			VecBuilder.fill(0, 0, 0, 0, 0, 0, 0)
 		);
 
